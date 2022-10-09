@@ -27,6 +27,15 @@ public class GameBoard {
         else return positionCoordinates.get(1).getValue();
     }
 
+    public int playerPositionAtSnakeOrLadder(int piecePosition){
+        if(piecePosition<=100 && piecePosition>=1){
+           if(piecePosition!=snakeLadderPosition.get(piecePosition)){
+               return snakeLadderPosition.get(piecePosition);
+           }
+        }
+       return  -1;
+    }
+
     private void populatePositionCoordinates(){
         positionCoordinates = new ArrayList<>(100);
         positionCoordinates.add(new Pair<Integer, Integer>(20,380) );

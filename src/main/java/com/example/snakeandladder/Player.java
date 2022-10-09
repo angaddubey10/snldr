@@ -11,6 +11,7 @@ public class Player {
     int yPosition;
     int currentPiecePosition;
 
+    public static long lastMovementTime;
     static GameBoard gameBoard;
 
     Player(int tileSize, Color pieceColor){
@@ -22,14 +23,12 @@ public class Player {
         gamePiece.setFill(pieceColor);
         gamePiece.setTranslateX(this.xPosition);
         gamePiece.setTranslateY(this.yPosition);
+        lastMovementTime =  System.currentTimeMillis();
+    }
 
-
-//        this.gamePiece = new Circle(tileSize/2);
-////        gamePiece.setId("player2");
-//
-//        gamePiece.getStyleClass().add("style.css");
-//        gamePiece.setTranslateX(0);
-//        gamePiece.setTranslateY(0);
+    public void setAtStart(){
+        currentPiecePosition = 1;
+        movePlayer(0);
     }
 
     public void movePlayer(int diceValue){
@@ -38,37 +37,33 @@ public class Player {
         }
         translatePlayer();
     }
+    public void playerAtSnakeOrLadder(){
+        int newPosition = gameBoard.playerPositionAtSnakeOrLadder(this.currentPiecePosition);
+        if(newPosition != -1){
+            this.currentPiecePosition = newPosition;
+            translatePlayer();
+        }
+    }
+
+    public boolean getWinningStatus(){
+        return currentPiecePosition == 100;
+    }
 
     public Circle getGamePiece(){
         return this.gamePiece;
     }
 
     private  void translatePlayer(){
-
         this.xPosition = gameBoard.getXValue(currentPiecePosition);
         this.yPosition = gameBoard.getYValue(currentPiecePosition);
-
         TranslateTransition animate = new TranslateTransition(Duration.millis(1000),this.gamePiece);
 //        System.out.println(x + " " + y);
         animate.setToX(this.xPosition);
         animate.setToY(this.yPosition);
         animate.setAutoReverse(false);
         animate.play();
-
-
-
-    }
-
-    private  void translatePlayer1(int x, int y, Circle b){
-        TranslateTransition animate = new TranslateTransition(Duration.millis(1000),b);
-        System.out.println(x + " " + y);
-        animate.setToX(x);
-        animate.setToY(y);
-        animate.setAutoReverse(false);
-        animate.play();
-
-
-
+        lastMovementTime =  System.currentTimeMillis();
+//        System.out.println(lastMovementTime + "dddddddd");
     }
 
 }

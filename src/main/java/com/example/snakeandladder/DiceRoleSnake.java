@@ -147,7 +147,7 @@ public class DiceRoleSnake extends Application {
         randResult.setTranslateX(150);
         randResult.setTranslateY(410);
 
-        Image img = new Image("C:\\Users\\angaddubey\\IdeaProjects\\SnakeAndLadder\\src\\snakeladder.jpg");
+        Image img = new Image("C:\\Users\\angaddubey\\IdeaProjects\\snldr\\src\\snakeladder.jpg");
         ImageView bgImage = new ImageView();
         bgImage.setImage(img);
 

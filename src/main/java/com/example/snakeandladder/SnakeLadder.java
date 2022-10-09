@@ -1,6 +1,4 @@
 package com.example.snakeandladder;
-
-import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -21,16 +19,15 @@ import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class SnakeLadder extends Application {
-    public int rand;
+    public int diceValue;
     public Label randResult;
 
-    public long prevTime = 0;
-
-    public int cirPos[][] = new int[10][10];
-    public int ladderPosition[][] = new int[6][3];
+//    public long prevTime = 0;
+//
+//    public int cirPos[][] = new int[10][10];
+//    public int ladderPosition[][] = new int[6][3];
     public static final int tileSize = 40;
     public static final int width = 10;
     public static final int height = 10;
@@ -143,8 +140,8 @@ public class SnakeLadder extends Application {
                 if(gameStart){
                     if(player1Turn){
                         getDiceValue();
-                        randResult.setText(String.valueOf(rand));
-                        playerOne.movePlayer(rand);
+                        randResult.setText(String.valueOf(diceValue));
+                        playerOne.movePlayer(diceValue);
 //                        move1Player();
 //                        translatePlayer(player1XPos, player1YPos, player1);
                         player1Turn = false;
@@ -164,10 +161,10 @@ public class SnakeLadder extends Application {
                 if(gameStart){
                     if(player2Turn){
                         getDiceValue();
-                        randResult.setText(String.valueOf(rand));
+                        randResult.setText(String.valueOf(diceValue));
 //                        move2Player();
 //                        translatePlayer(player2XPos, player2YPos, player2);
-                        playerTwo.movePlayer(rand);
+                        playerTwo.movePlayer(diceValue);
                         player2Turn = false;
                         player1Turn = true;
 //                        snakeFall();
@@ -254,7 +251,7 @@ public class SnakeLadder extends Application {
                 if(gameStart){
                     if(player1Turn){
                         getDiceValue();
-                        randResult.setText(String.valueOf(rand));
+                        randResult.setText(String.valueOf(diceValue));
                         move1Player();
                         translatePlayer(player1XPos, player1YPos, player1);
                         player1Turn = false;
@@ -274,7 +271,7 @@ public class SnakeLadder extends Application {
                 if(gameStart){
                     if(player2Turn){
                         getDiceValue();
-                        randResult.setText(String.valueOf(rand));
+                        randResult.setText(String.valueOf(diceValue));
                         move2Player();
                         translatePlayer(player2XPos, player2YPos, player2);
                         player2Turn = false;
@@ -324,13 +321,13 @@ public class SnakeLadder extends Application {
         return root;
     }
     private void getDiceValue(){
-        rand  = (int)(Math.random()*6+1);
+        diceValue = (int)(Math.random()*6+1);
     }
 
 
 
     private void move1Player(){
-        for(int i=0; i<rand; i++){
+        for(int i = 0; i< diceValue; i++){
             if(posCir1 % 2 == 1){
                 player1XPos+=40;
             }
@@ -360,7 +357,7 @@ public class SnakeLadder extends Application {
     }
 
     private void move2Player(){
-        for(int i=0; i<rand; i++){
+        for(int i = 0; i< diceValue; i++){
             if(posCir2 % 2 == 1){
                 player2XPos+=40;
             }

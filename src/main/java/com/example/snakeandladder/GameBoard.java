@@ -29,6 +29,7 @@ public class GameBoard {
 
     private void populatePositionCoordinates(){
         positionCoordinates = new ArrayList<>(100);
+        positionCoordinates.add(new Pair<Integer, Integer>(20,380) );
         for (int i = height-1; i >=0; i--) {
             for (int j = width-1; j >=0 ; j--) {
                 int xTilePos;
@@ -45,7 +46,7 @@ public class GameBoard {
             }
         }
         for(int i=0; i<positionCoordinates.size(); i++){
-            System.out.println(i + "  x : " + positionCoordinates.get(i).getKey() + "    y : " + positionCoordinates.get(i).getValue());
+//            System.out.println(i + "  x : " + positionCoordinates.get(i).getKey() + "    y : " + positionCoordinates.get(i).getValue());
         }
     }
 
@@ -63,5 +64,9 @@ public class GameBoard {
         snakeLadderPosition.set(89,68);
         snakeLadderPosition.set(97,80);
     }
+
+//    public static void main(String[] args) {
+//        GameBoard ab = new GameBoard();
+//    }
 
 }
